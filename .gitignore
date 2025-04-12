@@ -1,0 +1,22 @@
+# Python cache en gecompileerde bestanden
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtuele omgeving
+venv/
+.env
+.venv/
+
+# Editor-bestanden
+.vscode/
+.idea/
+
+# Mac-bestanden
+.DS_Store
+
+# Streamlit cache (indien je het gebruikt)
+.streamlit/
+
+# Log- of output-bestanden
+*.log
