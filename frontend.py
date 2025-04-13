@@ -35,8 +35,12 @@ if st.button("Ask"):
     if user_input.strip() != "":
         with st.spinner("Mistral is thinking..."):
             try:
+                # response = requests.post(
+                #     "http://localhost:8000/ask", 
+                #     json={"prompt": user_input + emoji_detector}
+                # )
                 response = requests.post(
-                    "http://localhost:8000/ask", 
+                    "https://askmistral-api.onrender.com", 
                     json={"prompt": user_input + emoji_detector}
                 )
                 result = response.json()
