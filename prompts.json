@@ -1,20 +1,56 @@
 [
   {
-    "prompt": "name a cheesetype",
-    "response": "Gouda - This Dutch cheese is semi-hard and has a smooth, firm texture. It has a rich, nutty flavor that becomes stronger as it ages. The younger varieties are often used for melting due to their softer texture. Enjoy Gouda in a variety of dishes or simply by itself!",
+    "prompt": "How to burn calories fast?",
+    "response": "Here are some effective ways to burn calories quickly:\n\n1. High-Intensity Interval Training (HIIT): This type of exercise alternates between intense bursts of activity and periods of rest or low-intensity exercise. It can help you burn more calories in less time than steady-state cardio. Examples include sprint intervals, burpees, and jump rope intervals.\n2. Strength Training: Lifting weights not only helps build muscle mass but also boosts your metabolism, allowing you to burn more calories at rest. Aim for 2-3 strength training sessions per week.\n3. Increase Non-Exercise Activity Thermogenesis (NEAT): This refers to the energy expended for activities like walking, fidgeting, and doing housework. By increasing your daily movement, you can burn more calories throughout the day.\n4. Eat a High-Protein Diet: Protein requires more energy to digest than carbs or fats, so eating more protein can help boost your calorie burn. Aim for 1.2-2 grams of protein per kilogram of body weight per day.\n5. Stay Hydrated: Drinking water can help increase your metabolism and aid in digestion, both of which can help you burn more calories. Aim for 8-10 cups of water per day.\n6. Get Enough Sleep: Lack of sleep can disrupt your metabolism and hormone levels, leading to weight gain. Aim for 7-9 hours of sleep per night.\n7. Reduce Stress: Chronic stress can increase cortisol levels, which can lead to weight gain. Find ways to manage stress, such as through meditation, yoga, or deep breathing exercises.",
+    "saved_emoji": "\ud83c\udfc3\u200d\u2640\ufe0f",
+    "timestamp": "2025-04-14T12:29:40.869933"
+  },
+  {
+    "prompt": "Give me a cheesetype?",
+    "response": "Cheese Type: Cheddar\n\nKnown for its firm texture and sharp flavor, Cheddar cheese is one of the most popular types worldwide. It originates from the village of Cheddar in Somerset, England. The aging process can range from several months to over two years, leading to varying degrees of sharpness. Delicious in sandwiches, on crackers, or melted on top of burgers and popcorn!",
     "saved_emoji": "\ud83e\uddc0",
-    "timestamp": "2025-04-13T04:51:13.463845"
+    "timestamp": "2025-04-14T12:32:14.420162"
   },
   {
-    "prompt": "tell me more about calory burning activities",
-    "response": "\u200d\u2642\ufe0f Calorie-burning activities are exercises that help you maintain a healthy weight or even lose weight by burning calories. Here's a list of various activities and the approximate number of calories they burn per hour:\n\n1. Running (6 mph) \ud83c\udfc3\u200d\u2642\ufe0f - 605 calories for a 155-pound person\n2. Cycling (14-16 mph) \ud83d\udeb4 - 563 calories for a 155-pound person\n3. Swimming laps (freestyle) \ud83c\udfca\u200d\u2642\ufe0f - 423 calories for a 155-pound person\n4. Dancing (moderate intensity) \ud83d\udc83 - 267 calories for a 155-pound person\n5. Playing soccer \u26bd\ufe0f - 400 calories for a 155-pound person\n6. Weight lifting (moderate intensity) \ud83c\udfcb\u200d\u2642\ufe0f - 240 calories for a 155-pound person\n7. Walking (3 mph) \ud83d\udeb6\u200d\u2640\ufe0f - 149 calories for a 155-pound person\n8. Yoga \ud83e\uddd8\u200d\u2642\ufe0f - 170 calories for a 155-pound person\n9. Housework (vacuuming, mopping) \ud83c\udf73 - 149 calories for a 155-pound person\n10. Jumping rope \ud83e\udd41 - 382 calories for a 155-pound person",
-    "saved_emoji": "\ud83c\udfc3",
-    "timestamp": "2025-04-13T04:54:06.306043"
+    "prompt": "Generate a question",
+    "response": "Here's an interesting question for you: If you were to design a spacecraft for interstellar travel, what would be the key features and technologies that it should possess? (Hint: Consider factors like propulsion, life support systems, navigation, and materials.)",
+    "saved_emoji": "\ud83d\ude80",
+    "timestamp": "2025-04-14T12:35:20.160615"
   },
   {
-    "prompt": "tell me more about calory burning activities",
-    "response": "Calorie burning activities are essential for maintaining a healthy lifestyle and managing weight. Here are some popular examples:\n\n1. Running: A popular choice for many, running is an excellent way to burn calories. The number of calories burned depends on factors like speed, distance, and body weight, but on average, a 160-pound person can burn around 300 calories by running for 30 minutes at a moderate pace.\n2. Cycling: This activity is low-impact and easy on the joints, making it suitable for people of all fitness levels. A 140-pound person can burn approximately 298 calories by cycling for 30 minutes at a moderate intensity.\n3. Swimming: Swimming is an effective full-body workout that burns calories while also improving cardiovascular health, muscle tone, and flexibility. A 155-pound person can burn around 223 calories by swimming laps for 30 minutes at a moderate pace.\n4. Dancing: Whether it's Zumba, salsa, or ballroom dancing, moving your body to the beat is an enjoyable way to burn calories. A 125-pound person can burn about 170 calories by dancing for 30 minutes at a moderate intensity.\n5. High-Intensity Interval Training (HIIT): HIIT workouts involve short bursts of high-intensity exercise followed by periods of rest or low-intensity activity. A 185-pound person can burn around 272 calories in just 10 minutes of a typical HIIT workout, depending on the specific exercises performed.\n6. Weightlifting: Lifting weights helps build lean muscle mass, which boosts your metabolism and allows you to burn more calories at rest. A 130-pound person can burn around 74 calories by lifting weights for 30 minutes.\n7. Yoga: Practicing yoga has numerous health benefits, including stress relief and improved flexibility. It also helps with weight loss since it requires exertion and focus. A 150-pound person can burn about 95 calories during a 30-minute session of vinyasa or power yoga.\n8. Walking: This low-impact activity is an accessible choice for people of all fitness levels. A 200-pound person can burn around 100 calories by walking at a moderate pace for just 30 minutes.",
-    "saved_emoji": "\ud83c\udfc3\u200d\u2642\ufe0f",
-    "timestamp": "2025-04-13T04:59:27.619572"
+    "prompt": "Generate a question, start with \" and end with \"",
+    "response": "A hard drive (HDD) uses a spinning disk to read and write data, while a solid-state drive (SSD) has no moving parts, storing information on flash memory chips. This makes SSDs faster and more durable than HDDs. However, for gaming systems, an SSD can significantly improve load times but is generally more expensive per gigabyte than an HDD. If you have a tight budget, an HDD might be sufficient, but if you want faster game load times and don't mind the higher cost, an SSD would be a good choice.",
+    "saved_emoji": "\ud83d\udcbb",
+    "timestamp": "2025-04-14T12:36:27.119263"
+  },
+  {
+    "prompt": "How many universities does The Netherlands have?",
+    "response": "In total, there are approximately 140 recognized universities and higher education institutions in the Netherlands. These include research universities, applied sciences universities, and universities of professional education. Each one contributes uniquely to the rich academic landscape of this innovative country!",
+    "saved_emoji": "\ud83c\udfe2",
+    "timestamp": "2025-04-14T12:38:51.491756"
+  },
+  {
+    "prompt": "Generate 3 questions",
+    "response": "Question 1: How far do you think we can push the boundaries of space exploration in the next decade? (\ud83d\ude80 Space Exploration)\n\n\ud83e\uddd1\u200d\ud83d\udcbb Question 2: What are some innovative ways artificial intelligence is changing the landscape of work and productivity? (\ud83e\udd16 Artificial Intelligence)\n\n\ud83d\udcb0 Question 3: Can you discuss the potential impact of cryptocurrencies on global economies in the upcoming years? (\ud83d\udcb0 Cryptocurrency Economy)",
+    "saved_emoji": "\ud83d\ude80",
+    "timestamp": "2025-04-14T12:39:48.510819"
+  },
+  {
+    "prompt": "Generate 5 questions",
+    "response": "Here are five astronomy-themed questions for curious minds:\n\n1. \ud83c\udf0c What is the name of the largest galaxy in the observable universe? (Answer: Andromeda)\n\n2. \ud83e\ude90 How many known planets orbit our Sun, not including Earth and our Moon? (Answer: There are eight - Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune)\n\n3. \ud83c\udf10 What is the closest star to our Solar System, and can you name a famous double star system within that same star system? (Answer: Proxima Centauri; The famous double star system within Proxima Centauri is Alpha Centauri AB)\n\n4. \ud83e\ude95 What is the brightest object in the night sky, aside from the Moon, and is it a planet or a star? (Answer: Venus - It's a planet)\n\n5. \ud83c\udf20 Can you name three constellations that are part of the zodiac and represent the Sun's path through the year? (Answer: Aries, Taurus, Gemini, Cancer, Leo, Virgo, Libra, Scorpio, Sagittarius, Capricorn, Aquarius, and Pisces)",
+    "saved_emoji": "\ud83d\ude80",
+    "timestamp": "2025-04-14T12:42:57.994437"
+  },
+  {
+    "prompt": "Generate 6 questions",
+    "response": "Question 1: Who was the first person to successfully calculate the value of pi beyond its integer and fractional parts?\n\n\ud83d\udcda Question 2: Can you explain the concept of a limit in calculus and provide an example of its application?\n\n\ud83d\ude80 Question 3: What is the role of Taylor series in approximating functions, and can you provide an example of a function that can be well-approximated using this method?\n\n\ud83d\udd04 Question 4: How does the Riemann zeta function contribute to number theory, and what are some interesting properties or conjectures associated with it?\n\n\ud83e\uddee Question 5: What is the Euler's totient function and how is it used in number theory to determine the number of positive integers coprime to a given number?\n\n\ud83c\udf10 Question 6: Can you discuss the significance of Prime Numbers in mathematics, and provide an interesting real-world application where prime numbers play a crucial role.",
+    "saved_emoji": "\ud83d\udd0e",
+    "timestamp": "2025-04-14T12:44:40.045706"
+  },
+  {
+    "prompt": "Tell me about the sun",
+    "response": "The Sun is our nearest star and the center of our solar system. It is a massive ball of hot plasma (ionized gas) that emits light, heat, and various forms of radiation. With a diameter of approximately 1.39 million kilometers, it accounts for about 99.86% of the total mass of the solar system! The Sun's energy comes from nuclear fusion, where hydrogen atoms combine to form helium in its core, releasing immense amounts of energy. This process has been maintaining the Sun's internal heat and light for over 4.5 billion years, supporting life on Earth as we know it. Isn't the Universe fascinating? \ud83e\udd2f",
+    "saved_emoji": "\ud83c\udf1e",
+    "timestamp": "2025-04-14T12:47:02.313070"
   }
 ]

@@ -12,7 +12,7 @@ def ask_model(input: PromptInput):
     response = requests.post(
         "http://localhost:11434/api/generate",
         json={
-            "model": "mistral",  # we gebruiken nu Mistral!
+            "model": "mistral",  
             "prompt": input.prompt,
             "stream": False
         }
