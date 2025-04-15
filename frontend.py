@@ -7,6 +7,22 @@ from datetime import datetime
 
 st.set_page_config(page_title="Ask Mistral", page_icon="🧠")
 
+def edit_history():
+    with open("prompts.json", "r") as file:
+        prompts = json.load(file)
+        for item in prompts:
+            if len(item["prompt"]) > 17:
+                extra = "..."
+            else: 
+                extra = ""
+            sneakpeek = item["prompt"][:17]
+            extracted_emoji = item["saved_emoji"]
+            # emojis_only = [char for char in text if emoji.is_emoji(char)]
+            with st.sidebar.expander(f"{extracted_emoji} Question: {sneakpeek + extra}"):
+                st.write("Question:", item["prompt"])
+                st.write("Answer:", item["response"])
+                st.write("Timestamp:", item["timestamp"])
+
 # st.sidebar.title("History")
 
 # st.sidebar.button("Reset", type="primary")
@@ -21,15 +37,21 @@ with st.sidebar:
 
     with col1:
         st.markdown("### Recently asked")
+        edit_history()
 
     with col2:
+        # if st.button("Reset"):
+        #     with open("prompts.json", "r") as file:
+        #         data = json.load(file)
+        #     data = []
+        #     with open("prompts.json", "w") as file:
+        #         json.dump(data, file, indent=2)
+        #     # pass
+        # edit_history()
         if st.button("Reset"):
-            with open("prompts.json", "r") as file:
-                data = json.load(file)
-            data = []
             with open("prompts.json", "w") as file:
-                json.dump(data, file, indent=2)
-            pass
+                json.dump([], file, indent=2)
+            st.rerun()
 
 emoji_detector = ",start your answer with a related emoji"
 
@@ -76,22 +98,6 @@ def question(user_input):
     except Exception as e:
         st.error(f"An error occured: {e}")
 
-def edit_history():
-    with open("prompts.json", "r") as file:
-        prompts = json.load(file)
-        for item in prompts:
-            if len(item["prompt"]) > 17:
-                extra = "..."
-            else: 
-                extra = ""
-            sneakpeek = item["prompt"][:17]
-            extracted_emoji = item["saved_emoji"]
-            # emojis_only = [char for char in text if emoji.is_emoji(char)]
-            with st.sidebar.expander(f"{extracted_emoji} Question: {sneakpeek + extra}"):
-                st.write("Question:", item["prompt"])
-                st.write("Answer:", item["response"])
-                st.write("Timestamp:", item["timestamp"])
-
 
 with column1: 
     user_input = st.text_area("What do you want to ask Mistral?", "")
@@ -101,13 +107,20 @@ with column1:
                 question(user_input)
         edit_history()
 
+
 def suggestions(): 
-    st.markdown("Frequently asked questions")
+    left, right = st.columns([2, 1])
+    with left:
+        st.markdown("Frequently asked questions")
+    with right:
+        if st.button("new"):
+            None
     with open("suggestions.json", "r") as file:
         data = json.load(file)
     for item in data:
         if st.button(item["prompt"]):
             st.session_state["suggestion_prompt"] = item["prompt"]
+        
 
 with column2: 
     suggestions()
