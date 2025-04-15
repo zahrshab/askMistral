@@ -10,9 +10,14 @@ st.set_page_config(page_title="Ask Mistral", page_icon="🧠")
 # st.sidebar.title("History")
 
 # st.sidebar.button("Reset", type="primary")
+st.title("🧠 AskMistral – Your local AI")
 
+if "suggestion_prompt" not in st.session_state:
+    st.session_state["suggestion_prompt"] = None
+
+column1, column2 = st.columns([2, 1])
 with st.sidebar:
-    col1, col2 = st.columns([3, 1.2]) 
+    col1, col2 = st.columns([3, 1.2])
 
     with col1:
         st.markdown("### Recently asked")
@@ -26,9 +31,6 @@ with st.sidebar:
                 json.dump(data, file, indent=2)
             pass
 
-st.title("🧠 AskMistral – Your local AI")
-
-user_input = st.text_area("What do you want to ask Mistral?", "")
 emoji_detector = ",start your answer with a related emoji"
 
 def extract_first_emoji_and_text(text):
@@ -40,7 +42,28 @@ def extract_first_emoji_and_text(text):
 
     return None, text
 
+def write_answer(user_input, answer, emoji):
+    st.markdown("### 💬 Answer:")
+    st.write(answer)
+    with open("prompts.json", "r+") as file:
+        try:
+            data = json.load(file)
+        except json.JSONDecodeError:
+            data = []
+
+        data.append({
+            "prompt": user_input,
+            "response": answer,
+            "saved_emoji": emoji,
+            "timestamp": datetime.now().isoformat()
+        })
+        file.seek(0)
+        json.dump(data, file, indent=2)
+        
+
+
 def question(user_input):
+    st.session_state["suggestion_prompt"] = None
     try:
         response = requests.post(
             "http://localhost:8000/ask", 
@@ -49,31 +72,9 @@ def question(user_input):
         result = response.json()
         emoji, answer = extract_first_emoji_and_text(result["response"])
         # answer_without_emoji = result["response"][index + 1:]
-        st.markdown("### 💬 Answer:")
-        st.write(answer)
-        with open("prompts.json", "r+") as file:
-            try:
-                data = json.load(file)
-            except json.JSONDecodeError:
-                data = []
-
-            data.append({
-                "prompt": user_input,
-                "response": answer,
-                "saved_emoji": emoji,
-                "timestamp": datetime.now().isoformat()
-            })
-            file.seek(0)
-            json.dump(data, file, indent=2)
+        write_answer(user_input, answer, emoji)
     except Exception as e:
         st.error(f"An error occured: {e}")
-
-
-if st.button("Ask"):
-    if user_input.strip() != "":
-        with st.spinner("Mistral is thinking..."):
-            question(user_input)
-        
 
 def edit_history():
     with open("prompts.json", "r") as file:
@@ -91,37 +92,46 @@ def edit_history():
                 st.write("Answer:", item["response"])
                 st.write("Timestamp:", item["timestamp"])
 
-edit_history()
+
+with column1: 
+    user_input = st.text_area("What do you want to ask Mistral?", "")
+    if st.button("Ask"):
+        if user_input.strip() != "":
+            with st.spinner("Mistral is thinking..."):
+                question(user_input)
+        edit_history()
 
 def suggestions(): 
-    col1, col2 = st.columns([3, 1.2])
-    with col1:
-        st.markdown("### Frequently asked questions")
-        with open("suggestions.json", "r") as file:
-            data = json.load(file)
-        for item in data:
-            if st.button(item["prompt"]):
-                user_input = item["prompt"]
-                question(user_input)
-                edit_history()
-    # with col2: 
-    #     if st.button("New suggestions"):
+    st.markdown("Frequently asked questions")
+    with open("suggestions.json", "r") as file:
+        data = json.load(file)
+    for item in data:
+        if st.button(item["prompt"]):
+            st.session_state["suggestion_prompt"] = item["prompt"]
+
+with column2: 
+    suggestions()
 
 
-suggestions()
+if st.session_state["suggestion_prompt"]:
+    with column1:
+        with st.spinner("Mistral is thinking..."):
+            question(st.session_state["suggestion_prompt"])
+        edit_history()  
 
-def generateQuestions():
-    user_input = "Generate 3 questions"
-    try:
-        response = requests.post(
-            "http://localhost:8000/ask", 
-            json={"prompt": user_input}
-        )
-        result = response.json()
-        # find een index voor de question
-        # doe dit voor alle questions
-        # plaats ze in de suggestions.json file 
-        # schrijf methode om questions te kunnen randomizen 
 
-    except Exception as e:
-        st.error(f"An error occured: {e}")
+# def generateQuestions():
+#     user_input = "Generate 3 questions"
+#     try:
+#         response = requests.post(
+#             "http://localhost:8000/ask", 
+#             json={"prompt": user_input}
+#         )
+#         result = response.json()
+#         # find een index voor de question
+#         # doe dit voor alle questions
+#         # plaats ze in de suggestions.json file 
+#         # schrijf methode om questions te kunnen randomizen 
+
+#     except Exception as e:
+#         st.error(f"An error occured: {e}")
