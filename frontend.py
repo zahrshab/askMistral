@@ -3,9 +3,25 @@ import requests
 import json
 import emoji
 import regex
+import re
+import random
+import threading
 from datetime import datetime
 
 st.set_page_config(page_title="Ask Mistral", page_icon="🧠")
+
+if "suggestions" not in st.session_state:
+    try:
+        with open("suggestions.json", "r") as file:
+            st.session_state["suggestions"] = json.load(file)
+    except:
+        st.session_state["suggestions"] = []
+
+def save_json(filepath, data):
+    with open(filepath, "r+") as file:
+        file.seek(0)
+        json.dump(data, file, indent=2)
+        file.truncate()
 
 def edit_history():
     with open("prompts.json", "r") as file:
@@ -23,9 +39,9 @@ def edit_history():
                 st.write("Answer:", item["response"])
                 st.write("Timestamp:", item["timestamp"])
 
-# st.sidebar.title("History")
+def extract_questions(text):
+    return re.findall(r"\d+\.\s(.*?\?)", text)
 
-# st.sidebar.button("Reset", type="primary")
 st.title("🧠 AskMistral – Your local AI")
 
 if "suggestion_prompt" not in st.session_state:
@@ -40,14 +56,6 @@ with st.sidebar:
         edit_history()
 
     with col2:
-        # if st.button("Reset"):
-        #     with open("prompts.json", "r") as file:
-        #         data = json.load(file)
-        #     data = []
-        #     with open("prompts.json", "w") as file:
-        #         json.dump(data, file, indent=2)
-        #     # pass
-        # edit_history()
         if st.button("Reset"):
             with open("prompts.json", "w") as file:
                 json.dump([], file, indent=2)
@@ -81,8 +89,24 @@ def write_answer(user_input, answer, emoji):
         })
         file.seek(0)
         json.dump(data, file, indent=2)
-        
 
+def generateQuestions():
+    user_input = "Generate 3 questions"
+    try:
+        response = requests.post(
+            "http://localhost:8000/ask", 
+            json={"prompt": user_input}
+        )
+        result = response.json()
+        questions = extract_questions(result["response"])
+        return questions
+    except Exception as e:
+        st.error(f"An error occured: {e}")
+
+def pickThreeSuggestions():
+    with open("suggestions.json", "r") as file:
+        data = json.load(file)
+    return data[:3]
 
 def question(user_input):
     st.session_state["suggestion_prompt"] = None
@@ -105,46 +129,51 @@ with column1:
         if user_input.strip() != "":
             with st.spinner("Mistral is thinking..."):
                 question(user_input)
-        edit_history()
 
+def substitute_oneQuestion(new_question, identifier):
+    st.session_state["suggestion_index"] = None
+
+    if 0 <= identifier < len(st.session_state["suggestions"]):
+        st.session_state["suggestions"][identifier]["prompt"] = new_question
+        save_json("suggestions.json", st.session_state["suggestions"])
+
+
+def substitute_allQuestions(questions):
+    data = [{"prompt": question} for question in questions]
+    save_json("suggestions.json", data)
 
 def suggestions(): 
     left, right = st.columns([2, 1])
     with left:
         st.markdown("Frequently asked questions")
     with right:
-        if st.button("new"):
-            None
-    with open("suggestions.json", "r") as file:
-        data = json.load(file)
-    for item in data:
-        if st.button(item["prompt"]):
-            st.session_state["suggestion_prompt"] = item["prompt"]
-        
+        if st.button("new", key="generate_new_questions"):
+            questions = generateQuestions()
+            data = [{"prompt": question} for question in questions]
+            st.session_state["suggestions"] = data
+            save_json("suggestions.json", st.session_state["suggestions"])
 
+    for index, item in enumerate(st.session_state["suggestions"][:3]):
+        if st.button(item["prompt"], key=f"suggest_{item['prompt']}_{index}"):
+            st.session_state["suggestion_prompt"] = item["prompt"]
+            st.session_state["suggestion_index"] = index
+        
 with column2: 
     suggestions()
-
 
 if st.session_state["suggestion_prompt"]:
     with column1:
         with st.spinner("Mistral is thinking..."):
+            result_container = {}
+
+            def get_questions():
+                result_container["questions"] = generateQuestions()
+
+            thread = threading.Thread(target=get_questions)
+            thread.start()
             question(st.session_state["suggestion_prompt"])
-        edit_history()  
+            thread.join()
 
-
-# def generateQuestions():
-#     user_input = "Generate 3 questions"
-#     try:
-#         response = requests.post(
-#             "http://localhost:8000/ask", 
-#             json={"prompt": user_input}
-#         )
-#         result = response.json()
-#         # find een index voor de question
-#         # doe dit voor alle questions
-#         # plaats ze in de suggestions.json file 
-#         # schrijf methode om questions te kunnen randomizen 
-
-#     except Exception as e:
-#         st.error(f"An error occured: {e}")
+            questions = result_container.get("questions", [])
+            if questions:
+                substitute_oneQuestion(questions[0], st.session_state["suggestion_index"])
