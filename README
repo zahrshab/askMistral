@@ -1,0 +1,27 @@
+AskMistral is a user-friendly interface for running a local LLM (like Mistral) using Ollama. It combines backend (FastAPI + Ollama) with a clean frontend (Streamlit). No internet required: everything runs on your machine.
+
+🔑 Features
+  - Ask Anything
+  Send natural language prompts to a locally running LLM and get responses directly in your browser.
+  
+  - Chat History
+  View and expand previous questions in the left sidebar for easy review.
+  
+  - Suggested Questions
+  Common prompts are shown on the right to inspire or guide your interactions.
+  
+  - Fully Local & Private
+  Your data stays on your machine — powered by Ollama, no external API calls.
+  
+  - Browser-Based UI
+  Automatically launches in your browser on an available local port (e.g. localhost:3000, localhost:8514, etc.).
+
+🛠️ Technology Stack
+
+  Backend: FastAPI
+  LLM: Mistral via Ollama
+  Frontend: Streamlit
+  Automatic process cleanup on startup
+
+⚠️ Note on Performance
+AskMistral runs a large model locally, so generating a response may take a few seconds — especially on machines without a powerful GPU.
